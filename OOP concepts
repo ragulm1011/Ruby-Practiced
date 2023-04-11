@@ -1,0 +1,442 @@
+10/04/2023
+
+OOP concepts : 
+
+1) class -> blueprint for a datatype
+	class Box
+	    def initialize(w,h)
+		@width = w;
+		@height = h;
+	    end
+
+	    
+	end
+
+	box1 = Box.new(10,20);
+	
+2) Instance variables
+	class Box
+	    def initialize(w,h)
+		@width = w;
+		@height = h;
+	    end
+
+	    def getArea
+		return @width*@height;
+	    end
+
+	    
+	end
+
+	box1 = Box.new(10,20);
+	puts(box1.getArea);
+	
+3) Class methods and variables (like static)
+	-> shared b/w all objects
+	class Box
+	    @@boxCount = 0;
+
+	    def initialize(w,h)
+		@width = w;
+		@height = h;
+		@@boxCount += 1;
+
+	    end
+
+	    def getArea
+		return @width*@height;
+	    end
+
+	    def getCountOfBoxes
+		return @@boxCount
+	    end
+
+	    
+	end
+
+	box1 = Box.new(10,20);
+	box2 = Box.new(30,10);
+
+	puts(box2.getCountOfBoxes);
+	
+	
+	->class methods can only access class variables
+	class Box
+	    @@boxSize = 10;
+
+	    def initialize (w,h)
+		@width,@height = w,h;
+	    end
+
+	    #class methods
+	    def self.getBoxSize()
+		return @@boxSize;
+	    end
+	end
+
+	box1 = Box.new(10,20);
+	puts(Box.getBoxSize);
+	
+4) accessor methods
+
+	#accessor methods
+	#can be getter/setter
+
+	class Box
+	    def initialize(w,h)
+		@width , @height = w,h;
+	    end
+
+	    #getters
+
+	    def getWidth()
+		return @width;
+	    end
+
+	    def getHeight()
+		return @height;
+	    end
+
+	    #setters
+
+	    def setWidth(w)
+		@width = w;
+	    end;
+
+	    def setHeight(h)
+		@height = h;
+	    end;
+	end;
+
+	b1 = Box.new(10,20);
+	puts(b1.getHeight);
+	b1.setHeight(30);
+	puts(b1.getHeight);
+
+5) to_s -> instance method returns a string representation of an object
+
+	class Box
+	    def initialize(w,h)
+		@width,@height = w,h;
+	    end
+
+	    def to_s()
+		return "Height is #{@height} and width is #{@width}";
+	    end
+	end
+
+	b1 = Box.new(10,20);
+	puts(b1.to_s);
+	
+6) access control:
+
+	No access control for class and instance variables
+	
+	public -> all methods are public by default except iniialize
+	private -> only inside the class
+	protected -> only using object and with the subclasses
+	
+	class Box
+	    def initialize(w,h)
+		@width , @height = w , h;
+	    end
+
+	    def getHeight()
+		return @height;
+	    end
+
+	    def getWidth()
+		return @width;
+	    end;
+
+	    private :getHeight;
+	    private :getWidth;
+
+	    def getArea()
+		return @height * @width;
+	    end
+
+	    protected :getArea;
+
+	    
+
+	end
+
+	b1 = Box.new(10,20);
+	a = b1.getArea();
+	puts(a);
+
+7) Inheritance
+	class Box
+	    def initialize(w,h)
+		@width , @height = w,h;
+	    end
+
+	    def getArea()
+		return @width*@height;
+	    end
+	end
+
+	class BigBox < Box
+	    def printHeight()
+		puts("#{@height}");
+	    end
+	end
+
+	b1 = BigBox.new(10,20);
+	puts(b1.getArea);
+	b1.printHeight;
+
+8) Method Overloading -> Ruby doesn't supports method overloading because ruby is a dynamically typed language.
+
+9) Method Overriding :
+
+	class Box
+	    def initialize(w,h)
+		@width , @height = w,h;
+	    end
+
+	    def getArea()
+		return @width*@height;
+	    end
+	end
+
+	class BigBox < Box
+	    def getArea()
+		return @width*@height*5;
+	    end
+	end
+
+	b1 = BigBox.new(10,20);
+	puts(b1.getArea);
+	
+10) Freezing objects -> preventing it from getting changed
+		     -> making that as a constant
+		     class Box
+			    def initialize(w,h)
+				@width , @height = w,h;
+			    end
+			end
+
+			b1 = Box.new(10,20);
+			b1.freeze();
+
+			if (b1.frozen?())
+			    puts("Object b1 is frozen");
+			else  
+			    puts("Object b1 is not frozen");
+			end
+			
+11) Constants
+	-> accessed with className :: constName
+	-> must be initialized while declaring
+	
+	class Box
+	    BoxConstant = 10;
+	    def intialize(w,h)
+		@width,@height = w,h;
+	    end
+	end
+
+	puts(Box::BoxConstant);
+	
+12) Creating object using allocate : 
+
+	-> creates an unitialized object
+	class Box
+	    @width
+	    @height
+	    def getWidth()
+		return @width;
+	    end
+	end
+
+	b1 = Box.allocate();
+	puts(b1.getWidth);
+	
+13) attr_reader vs attr_writer vs attr_accessor
+	
+	class Box
+	    attr_reader :height , :width;
+	    attr_writer :height , :width;
+	    def initialize(h , w)
+		@height , @width = h , w;
+	    end
+	end
+
+	b1 = Box.new(10,20);
+	b1.height = 30;
+	puts(b1.height);
+	
+	
+	attr_accessor : gives reader and writer for those variables
+	
+	class Box
+	    attr_accessor :height , :width;
+	    def initialize(h , w)
+		@height , @width = h , w;
+	    end
+	end
+
+	b1 = Box.new(10,20);
+	b1.height = 30;
+	puts(b1.height);
+	
+
+14) Modules and Mixins
+
+	module DummyModule
+	     Name = "Ragul";
+	     Age = 21;
+	     def DummyModule.sayNameAndAge()
+		  print("Name is #{Name} and Age is #{Age}");
+	     end
+	end
+
+	class Student
+	     include DummyModule
+	     def printDetails()
+		  DummyModule.sayNameAndAge();
+	     end
+	end
+
+	s1 = Student.new
+	s1.printDetails
+	s1.sayNameAndAge
+	
+	
+15) Blocks:
+	-> implicit and explicit blocks
+	def test()
+	     return "No yield is available" unless block_given?
+	     yield 1;
+	     yield 2;
+	     puts("test method is called");
+	end
+
+	test{|i| puts("test block is called with #{i}")};
+
+	test
+	
+	
+16) Lamda
+	-> way to define a block with special syntax
+	->store it in variable and used later
+	
+	#Lamba
+	sayHi = -> {puts("Hi to everyone")};
+	sayHi.call;
+
+	sayHello = -> (name) {puts("Hello Mr.#{name}")};
+	sayHello.call("Ragul");
+
+	sayHi.();
+
+	sayHi.===;
+	
+17) Procs
+
+	-> doesn't care about no of args
+	
+	def test()
+	     my_proc = Proc.new { |x,y| puts("The value of x is #{x} and y is #{y}") };
+	     my_proc.call(5,10);
+	end
+
+	test
+	
+
+18) Regex:
+	
+	str = "Hi this is Nenni";
+	if(str.match(/Hi t/))
+	     print("Yes");
+	else
+	     print("No");
+	end
+	
+	#Character classes
+	def test(str)
+	     if(str =~ /[aeiou]/)
+		  puts("Yes");
+	     else
+		  puts("No");
+	     end
+	end
+	str = "Geeks";
+	test(str)
+	
+	
+	#Character classes
+	str = "Hi";
+	if(str.match(/\w\w/))
+	     puts("Yes");
+	else 
+	     puts("No");
+	end
+
+
+	if(str =~ /\d\d/)
+	     puts("Yes");
+	else 
+	     puts("No");
+	end
+	
+	
+	str = "Hi22";
+
+	if(str =~ /\w+/)
+	     puts("Yes");
+	else 
+	     puts("No");
+	end
+
+	if(str =~ /\w{1,4}/)
+	     puts("Yes");
+	else
+	     puts("No");
+	end
+
+			
+19) Operator Overloading : 
+	
+	class Student
+	     attr_accessor :name , :age;
+
+	     def initialize(name , age)
+		  @name = name;
+		  @age = age;
+	     end
+
+	     def +(object)
+		  return object+age;
+	     end
+
+	     def -(object)
+		  return object-age;
+	     end
+	end
+
+	s1 = Student.new("Ragul" , 20);
+	puts(s1+2);
+	puts(s1-2);
+
+20) Exception Handling: 
+
+	def exceptionHandlingExample()
+	     begin
+		  puts("Line executed before exception occured");
+		  raise("Exception occurred");
+		  puts("Line executed after exception occurred");
+	     rescue 
+		  puts("Enter into rescue block");
+	     else
+		  puts("Congrats -- No error");
+	     ensure
+		  puts("Always ensure block will run");
+	     end
+	end
+
+	exceptionHandlingExample
+	
+	

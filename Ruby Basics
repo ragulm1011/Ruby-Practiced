@@ -1,0 +1,633 @@
+1) extension -> .rb
+2) # (pound character) -> single line comment
+3) =begin =end -> multiline comment
+4) #{} -> dynammic insertion into string
+5) gets() -> prompts user for input
+6) puts() -> prints and moves cursor to next line
+7) print() -> prints 
+8) \n \t -> can be used for spacing in puts() and print()
+
+9) Methods
+	1) Without params
+		def sayHi()
+    			print ("Hi");
+		end
+
+		sayHi;
+		
+	2) With params
+		def sayHiWithName (name)
+    			print("Hi #{name}");
+		end
+
+		sayHiWithName "Ragul"
+		
+	3) With variable params
+		def sayHiToAll (*params)
+    			for i in 0 ... params.length
+        			puts ("Hi Mr. #{params[i]}");
+    			end
+		end
+
+		sayHiToAll "Ragul";
+		sayHiToAll "Sri" , "Ganesh" , "Avanthika";
+		
+	4)With default params
+		def sayHi (name1 = "Ragul" , name2)
+    			puts ("Hi Mr. #{name1} and Mr. #{name2}");
+		end
+
+		sayHi "Sri";
+		
+		
+	5) return 
+		def returnName()
+    			return "Ragul";
+		end
+
+		puts (returnName);
+		
+10) undef -> used to undefine the method (cancels method definition)
+11) irb -> interactive ruby shell (mmediately view expression results, line by line)
+
+
+12) Here Document:
+	print <<"EOF"
+    		Hi ,
+    		Are you there
+    		Or not?
+
+	EOF
+	
+13) BEGIN block -> declares the code to be called before the program starts
+14) END block -> declares the code to be called after the program ends
+		puts ("Hi");
+		END{
+		    puts("Have a nice day");
+		}
+		BEGIN{
+		    puts("Good morning");
+		}
+		puts("Middle of the execution");
+		
+15) Variables:
+	1)Local
+	2)Instance (@)
+	3)Class (@@)
+	4)Global ($)
+	5)Constants (First Letter UpperCase)
+	
+16)Classes and Objects
+	
+	1) Example 1 : 
+		class Employee
+		    def sayHi()
+			puts("Hi");
+		    end
+		end
+
+		emp1 = Employee.new;
+		emp1.sayHi;
+		
+	2) Example 2 :
+	
+		class Student
+		    attr_accessor :name,
+		    def initialize(n , a)
+			@name = n;
+			@age = a;
+		    end
+		end
+
+		s1 = Student.new("Ragul",21);
+		puts(s1.name);
+		
+17) Literals
+
+	1)Integer Number
+	2)Float Number
+	3)Strings
+	4)BackSlash Notations
+	5)Arrays
+	6)Hashes
+	7)Ranges
+	
+	Example : 
+		
+	name = "Ragul";
+	puts("Hi #{name}"); #can be substituted
+	puts('Hi #{name}'); #cannot be substituted
+	puts("Hi Ragul \n"); #backslash notation
+
+
+	#Arrays
+
+	arr = ["Ragul" , "Nenni" , "Sri" , "Ganesh"];
+
+	arr.each do |i|
+	    puts i;
+	end
+
+
+	#Hashes
+	hsh = colors = { "red" => 0xf00, "green" => 0x0f0, "blue" => 0x00f }
+	hsh.each do |key, value|
+	   print key, " is ", value, "\n"
+	end
+
+
+	#Ranges
+	(10..15).each do |n|
+	    puts n;
+	end
+	
+
+18) Operators
+
+	1)Arithematic
+	2)Comparison
+	3)Parallel Assignment
+	4)Logical Operators
+	5)Ternary Operators
+	6)Range Operators
+	7)defined?
+	
+	Example : 
+	
+	num1 = 10;
+	num2 = 20;
+
+	#Arithematic Operators
+	puts(num1 + num2);
+
+	#Comparison Operators
+	#1) Combined
+	puts(num1 <=> num2);
+
+	num3 = 20;
+	str1 = 20.00;
+
+	puts(num3 == str1);
+	puts(num3 === str1);
+	puts(num3.eql?(str1));
+
+
+	#Parallel Assignment
+	a , b , c = 10,20,30;
+
+	#Logical Operators
+
+	n1 = 1;
+	n2 = 0;
+
+	puts(n1 && n2);
+	puts(n1 || n2);
+	puts(!n1);
+
+	b1 = true;
+	b2 = false;
+
+	puts((b1 and b2));
+	puts((b1 or b2));
+	puts((not b2));
+
+
+	str1 = b1 ? "Ragul" : "Nenni";
+	puts(str1);
+
+
+	#Range operators
+	(1...10).each do |n|
+	    print("#{n} ");
+	end
+
+	puts() 
+
+	(1..10).each do |n|
+	    puts(n );
+	end
+
+
+	foo = 32;
+	puts((defined ? bar));
+
+
+19) Conditional Statements
+	
+	1) if elsif else
+	2) if modifier
+	3) unless
+	4) unless modifier
+	5) case
+	
+	Example : 
+	
+	#Conditional statements
+
+	#1) if elsif else
+	num1 = 10;
+
+	if num1 <= 10
+	    puts("Number is within 10");
+	else
+	    puts("Greater than 10");
+	end
+
+	#2) if modifier
+	b1 = true;
+	puts("It got printed") if b1;
+
+	#3) unless
+	num1 = 10;
+	unless num1 > 10
+	    puts("Number is within 10");
+	else
+	    puts("more than 10");
+	end;
+
+	#4) unless modifier
+	b2 = false;
+	puts("Its got printed") unless b2;
+
+	#5) case
+	age = 10;
+	case age
+	when 0 .. 2
+	    puts("Age between 0 and 2");
+	when 3 .. 10
+	    puts("Age betweeen 3 and 10");
+	else 
+	    puts("Else condition");
+	end
+	
+	
+19) Loops : 
+
+	1)while
+	2)while modifier
+	3)until
+	4)until modifier
+	5)for
+	6)for ... in 
+	7)break , next
+	8)redo
+	Restarts this iteration of the most internal loop, without checking loop condition.
+	9)retry
+	restart from the beginning of the begin body.
+	
+	Example:
+	#Loops
+
+	#1)While Loop
+
+	num = 5;
+
+	while num < 10 do
+	    puts(num);
+	    num += 1;
+	end
+
+	#2) while modifier
+
+	num1 = 6;
+
+	begin
+	    puts(num1);
+	    num1 += 1;    
+	end while(num1 < 10);
+
+	#3) until loop
+
+	num1 = 8;
+	until num1 > 10 do
+	    puts(num1);
+	    num1 += 1;
+	end
+
+
+	#4) until modifier
+	num1 = 10;
+	begin
+	    puts(num1);
+	    num1 -= 1;
+	end until(num1 < 5);
+
+
+	#5) for loop
+	for i in 25..30
+	    print("#{i} ");
+	end
+
+	puts();
+
+	#6) for .. in loop
+	(25..30).each do |i|
+	    print("#{i} ");
+	end
+
+	#7)break , next;
+
+	num1 = 0;
+	while num1 < 10 do
+	    num1 += 1;
+
+	    if num1 == 2 
+		next;
+	    end;
+
+	    if(num1 == 7)
+		break;
+	    end;
+
+    print("#{num1} ");
+    
+end;
+
+
+20) Methods : 
+
+	1) def -> defines the method body
+	2) undef -> undefines the method body
+	
+	Example:
+	
+	#Methods
+
+
+
+	def returnAnArray 
+	    i = 10;
+	    j = 20;
+	    k = 30;
+	    return i,j,k;
+	end
+
+	puts(returnAnArray);
+	
+	
+	def sayHi()
+	    puts("Hi");
+	end;
+
+	undef sayHi;
+
+	sayHi;
+	
+	/home/ragul/rubyPrograms/tempCodeRunnerFile.rb:7:in `<main>': undefined local variable or method `sayHi' for main:Object (NameError)
+	
+	
+21) Blocks:
+	
+	1) Begin and end blocks
+	
+	Example:
+	
+	def test
+	    yield 5;
+	    puts("Hi from test method");
+	    yield 100;
+	end;
+
+
+	test{
+	    |n|
+	    puts("Hi from test block with #{n}");
+	}
+
+
+
+
+	test
+	
+22) Strings : 
+	
+	puts("Name \a") #double quote -> escape character interpreted
+	puts('Name \a') #single quotes -> escape character preserved
+	
+		puts("Name \a") #double quote -> escape character interpreted
+	puts('Name \a') #single quotes -> escape character preserved
+
+	#1)Create instance of String
+	str = String.new("Ragul");
+
+	#Backslash
+	str1 = "This is Ramu\'s bottle";
+
+
+	#Methods
+	str = "Hi";
+	str = str*3;
+	puts(str);
+
+	str1 = "Hi";
+	puts(str <=> str1);
+
+	str1 = str1.capitalize();
+	str1.upcase!; #changes are made inplace
+	puts(str1);
+
+
+	str = "Hit";
+	str.chop!;
+	puts(str);
+
+	puts(str.count("H"));
+
+	str = "Hi This is";
+	str = str.delete("This");
+	puts(str);
+
+	#Upcase and Downcase
+	str.upcase!;
+	puts(str);
+	str.downcase!;
+	puts(str);
+
+	puts(str.empty?);
+	puts(str.include?("h"));
+
+	str1 = "hi";
+	str2 = "hi";
+	puts(str1.eql?(str2));
+
+	str1.insert(1 , "Ran");
+	puts(str1);
+
+	puts(str1.length);
+	str1 = "   hranu   ";
+	puts(str1.strip());
+
+	#swapcase
+	str1 = str1.strip().swapcase();
+	puts(str1);
+
+
+	#conversion methods
+	str1 = "20";
+	fNum = str1.to_f;
+	sNum = str1.to_i;
+	puts(fNum);
+	puts(sNum);
+	
+	
+23) Arrays :
+	
+	negative index -> represents the elements in reverse manner
+	array grows dynamically when the elements are added
+	
+	
+
+	Program:
+	
+	#Arrays
+
+	arr = Array.new();
+	arr1 = Array.new(20);
+	arr2 = Array.new(4,"Ragul");
+	arr3 = Array.new(5) {|e| e = e*2};
+	arr4 = Array[1,2,3,4,5];
+
+	puts(arr4);
+	puts(arr2);
+	puts(arr3);
+
+
+	#length or size
+	puts(arr4.size());
+	puts(arr3.length());
+
+	#Methods
+	arr3 = arr3+arr4;
+	print(arr3);
+	puts();
+	print(arr3&arr4);
+	puts();
+	print(arr3|arr4);
+	puts();
+	print(arr3.at(3));
+	puts();
+	arr3.clear();
+	print(arr3);
+	puts();
+
+	arr3 = [1,2,3,4,5];
+	arr3.delete_at(2);
+	print(arr3);
+	puts();
+
+	arr2 = [77,99];
+	arr3.concat(arr2);
+	print(arr3);
+	puts();
+
+
+	print(arr3.empty?());
+	puts(); 
+
+	arr5 = Array.new(10);
+	arr5.fill(0);
+	print(arr5);
+	puts();
+
+	arr7 = [1,2,[3,4,5],[6,7]];
+	puts(arr7.flatten());
+
+	#pop and push
+	arr7.push(66);
+	puts(arr7.flatten().push(77).pop());
+
+	#reverse
+	arr7.reverse!();
+	print(arr7.flatten());
+
+
+	#shift and unshift
+	array = [1,2,3,4,5];
+	puts();
+	array = array.shift();
+	print(array);
+
+
+	arr1 = [1,2,3,4,5];
+	arr2 = arr1.map{|e| e = e*2};
+	print(arr2);
+	
+24) Hashes
+	
+	key value pair
+	no insertion order
+	can be accessed with keys not with indices
+	
+	hsh = Hash.new();
+	hash = {1 => "January" , 2 => "Febraury" , 3 => "March"};
+	puts(hash[1]);
+	
+	hsh = Hash.new();
+	hash = {1 => "January" , 2 => "Febraury" , 3 => "March"};
+	puts(hash[1]);
+
+	hash[5] = "May";
+	puts(hash);
+
+	#delete
+
+	hash.delete(3);
+	puts(hash);
+
+	#each
+	hash.each{|key,value| puts("Key is #{key} and value is #{value}")};
+
+	#length
+	puts(hash.length());
+
+	#invert
+	puts(hash.invert());
+
+	#sort
+	hash.sort();
+	puts(hash);
+
+	#to_a
+	puts(hash.to_a);
+	
+	
+25) Time and Date
+
+		#Date and Time
+	dat = Time.new();
+	puts(dat.inspect());
+	puts(dat.year);
+	puts(dat.month);
+	puts(dat.day);
+	
+26) Ranges
+	
+	mostly used in condition check for intervals like 5 to 10
+	.. -> end value is inclusive
+	... -> end value is exclusive
+	
+	puts((0..5).include?(3));
+	puts(('a'...'j').include?('b'));
+	puts((0..5) === 5);
+	
+
+27) File I/O
+	1)gets() and puts()
+	2)getc() and putc()
+	3)print()
+	
+
+
+	
+	
+
+		
+
+
+
+
+
+
+
+
+	
